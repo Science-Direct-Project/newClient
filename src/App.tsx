@@ -14,46 +14,57 @@ import OpenCalls from './components/OpenCalls';
 import SpecialIssues from './components/SpecialIssues';
 import Sidebar from './components/Sidebar';
 import FeedbackButton from './components/FeedbackButton';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AimsAndScope from './components/AimsAndScope';
 
 function App() {
   return (
-    <div className="bg-light-gray font-inter">
-      <Header />
-      <JournalBanner />
-      <NavBar />
+    <Router>
+      <div className="bg-light-gray font-inter">
+        <Header />
+        <JournalBanner />
+        <NavBar />
 
-      <main className="container mx-auto px-4 mt-8">
-        {/* AboutJournal and PublishingOptions side-by-side */}
-        <div className="flex flex-col lg:flex-row gap-8 mb-10">
-          <div className="w-full lg:w-3/4">
-            <AboutJournal />
-          </div>
-          <div className="w-full lg:w-1/4">
-            <PublishingOptions />
-          </div>
-        </div>
+        <main className="container mx-auto px-4 mt-8">
+          <Routes>
+            <Route path="/aims-and-scope" element={<AimsAndScope />} />
+            <Route path="/" element={
+              <>
+                {/* AboutJournal and PublishingOptions side-by-side */}
+                <div className="flex flex-col lg:flex-row gap-8 mb-10">
+                  <div className="w-full lg:w-3/4">
+                    <AboutJournal />
+                  </div>
+                  <div className="w-full lg:w-1/4">
+                    <PublishingOptions />
+                  </div>
+                </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main Content */}
-          <div className="w-full lg:w-3/4 flex flex-col gap-10">
-            <Timeline />
-            <EditorInChief />
-            <ArticlesSection />
-            <MoreFromIoT />
-            <CallsForPapers />
-            <OpenCalls />
-            <SpecialIssues />
-          </div>
+                <div className="flex flex-col lg:flex-row gap-8">
+                  {/* Main Content */}
+                  <div className="w-full lg:w-3/4 flex flex-col gap-10">
+                    <Timeline />
+                    <EditorInChief />
+                    <ArticlesSection />
+                    <MoreFromIoT />
+                    <CallsForPapers />
+                    <OpenCalls />
+                    <SpecialIssues />
+                  </div>
 
-          {/* Sidebar */}
-          <Sidebar />
-          {/* Fixed Feedback Button */}
-          <FeedbackButton />
-        </div>
-      </main>
+                  {/* Sidebar */}
+                  <Sidebar />
+                  {/* Fixed Feedback Button */}
+                  <FeedbackButton />
+                </div>
+              </>
+            } />
+          </Routes>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

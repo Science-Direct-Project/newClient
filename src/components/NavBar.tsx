@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const tabs = [
   { name: "Articles & Issues", dropdown: true },
@@ -70,12 +71,21 @@ const NavBar: React.FC = () => {
                     <ul className="py-2">
                       {dropdownItems[tab.name].map((item, idx) => (
                         <li key={idx}>
-                          <a
-                            href={item.href}
-                            className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
-                          >
-                            {item.text}
-                          </a>
+                          {item.text === 'Aims and scope' ? (
+                            <Link
+                              to="/aims-and-scope"
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : (
+                            <a
+                              href={item.href}
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </a>
+                          )}
                         </li>
                       ))}
                     </ul>
