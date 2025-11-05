@@ -16,6 +16,7 @@ import Sidebar from './components/Sidebar';
 import FeedbackButton from './components/FeedbackButton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AimsAndScope from './components/AimsAndScope';
+import GuideForAuthors from './pages/publish/guide_for_authors';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <main className="container mx-auto px-4 mt-8">
           <Routes>
             <Route path="/aims-and-scope" element={<AimsAndScope />} />
+            <Route path="/publish/guide-for-authors" element={<GuideForAuthors/>} />
             <Route path="/" element={
               <>
                 {/* AboutJournal and PublishingOptions side-by-side */}

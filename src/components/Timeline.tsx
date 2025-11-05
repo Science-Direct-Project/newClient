@@ -13,6 +13,7 @@ const Timeline: React.FC = () => {
               <Info size={16} className="text-gray-400 cursor-pointer" />
             </div>
             <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
+            
           </div>
         ))}
         {/* View all insights button inline after last stat */}
