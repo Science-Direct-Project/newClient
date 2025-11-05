@@ -25,7 +25,7 @@ function App() {
         <JournalBanner />
         <NavBar />
 
-        <main className="container mx-auto px-4 mt-8">
+  <main className="w-full mt-8">
           <Routes>
             <Route path="/aims-and-scope" element={<AimsAndScope />} />
             <Route path="/" element={
@@ -40,21 +40,26 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-8">
-                  {/* Main Content */}
-                  <div className="w-full lg:w-3/4 flex flex-col gap-10">
-                    <Timeline />
-                    <EditorInChief />
+                {/* Full width Timeline and EditorInChief */}
+                <div className="w-full flex flex-col gap-10">
+                  <Timeline />
+                  <EditorInChief />
+                </div>
+
+                {/* Margin for lower section */}
+                <div className="w-full flex flex-col gap-10">
+                  <div className="flex flex-col gap-10 m-8">
                     <ArticlesSection />
                     <MoreFromIoT />
                     <CallsForPapers />
                     <OpenCalls />
                     <SpecialIssues />
                   </div>
+                </div>
 
-                  {/* Sidebar */}
+                {/* Sidebar and Feedback Button */}
+                <div className="flex flex-col lg:flex-row gap-8">
                   <Sidebar />
-                  {/* Fixed Feedback Button */}
                   <FeedbackButton />
                 </div>
               </>
