@@ -19,7 +19,7 @@ const PoliciesAndGuidelines: React.FC = () => {
       <p className="text-gray-800 leading-relaxed mb-4">
         Guest Editors, please note: to submit a Special Issue proposal to this journal, please review the following link:
         <a
-          href="https://www.elsevier.com"
+          href="https://www.elsevier.com/subject/computer-science/special-issue-proposal"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 underline ml-1"
