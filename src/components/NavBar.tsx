@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
   const dropdownItems: Record<string, { text: string; href: string }[]> = {
     "Articles & Issues": [
       { text: "Latest issue", href: "#latest-issue" },
-      { text: "All issues", href: "#all-issues" },
+      { text: "All issues", href: "/all-issues" },
       { text: "Articles in press", href: "#articles-in-press" },
       { text: "Special issues and article collections", href: "#special-issues" },
       { text: "Linked datasets", href: "#linked-datasets" },
@@ -32,8 +32,8 @@ const NavBar: React.FC = () => {
       { text: "Awards", href: "#awards" },
     ],
     "Publish": [
-      { text: "Submit your article", href: "#submit-article" },
-      { text: "Guide for authors", href: "#guide-authors" },
+      { text: "Submit your article", href: "submit-article" },
+      { text: "Guide for authors", href: "guide_for_authors" },
       { text: "Call for papers", href: "#call-papers" },
       { text: "Policies and Guidelines", href: "#policies-guidelines" },
       { text: "Open access options", href: "#open-access" },
@@ -78,6 +78,20 @@ const NavBar: React.FC = () => {
                             >
                               {item.text}
                             </Link>
+                          ) : item.text === 'All issues' ? (
+                            <Link
+                              to="/all-issues"
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : item.text === 'Latest issue' ? (
+                            <Link
+                              to="/latest-issue"
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
                           ) : (
                             <a
                               href={item.href}
@@ -100,7 +114,7 @@ const NavBar: React.FC = () => {
                 <input type="text" placeholder="Search in this journal" className="border rounded-md py-2 pl-10 pr-4 w-64 focus:outline-none focus:ring-2 focus:ring-brand-blue" />
                 <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
-            <a href="#" className="text-brand-blue hover:underline">Submit your article</a>
+            <a href="submit-article" className="text-brand-blue hover:underline">Submit your article</a>
             <a href="#" className="text-brand-blue hover:underline">Guide for authors</a>
           </div>
         </div>
