@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
   const dropdownItems: Record<string, { text: string; href: string }[]> = {
     "Articles & Issues": [
       { text: "Latest issue", href: "#latest-issue" },
-      { text: "All issues", href: "#all-issues" },
+      { text: "All issues", href: "/all-issues" },
       { text: "Articles in press", href: "#articles-in-press" },
       { text: "Special issues and article collections", href: "#special-issues" },
       { text: "Linked datasets", href: "#linked-datasets" },
@@ -74,6 +74,20 @@ const NavBar: React.FC = () => {
                           {item.text === 'Aims and scope' || item.text === 'Call for papers' ? (
                             <Link
                               to={item.text === 'Aims and scope' ? "/aims-and-scope" : "/publish/call-for-authors"}
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : item.text === 'All issues' ? (
+                            <Link
+                              to="/all-issues"
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : item.text === 'Latest issue' ? (
+                            <Link
+                              to="/latest-issue"
                               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
                             >
                               {item.text}
