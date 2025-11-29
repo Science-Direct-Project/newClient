@@ -34,9 +34,26 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  register: (userData:any) => api.post('/auth/register', userData),
-  login: (credentials:any) => api.post('/auth/login', credentials),
+  register: (userData) => api.post('/auth/register', userData),
+  login: (credentials) => api.post('/auth/login', credentials),
   getProfile: () => api.get('/auth/profile'),
+};
+
+export const manuscriptAPI = {
+  // Submit new manuscript (with file upload)
+  submitManuscript: (formData) => {
+    return api.post('/manuscripts/submit', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  },
+
+  // Get author's manuscripts
+  getMyManuscripts: () => api.get('/manuscripts/my-manuscripts'),
+
+  // Get specific manuscript
+  getManuscript: (id) => api.get(`/manuscripts/${id}`),
 };
 
 export default api;

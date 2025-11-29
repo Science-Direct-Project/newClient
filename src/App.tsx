@@ -37,7 +37,7 @@
 //   return (
 //     <>
 //       {/* AboutJournal and PublishingOptions side-by-side */}
-//       <div className="flex flex-col lg:flex-row gap-8 mb-10">
+//       <div className="mb-10 flex flex-col gap-8 lg:flex-row">
 //         <div className="w-full lg:w-3/4">
 //           <AboutJournal />
 //         </div>
@@ -46,9 +46,9 @@
 //         </div>
 //       </div>
 
-//       <div className="flex flex-col lg:flex-row gap-8">
+//       <div className="flex flex-col gap-8 lg:flex-row">
 //         {/* Main Content */}
-//         <div className="w-full lg:w-3/4 flex flex-col gap-10">
+//         <div className="flex w-full flex-col gap-10 lg:w-3/4">
 //           <Timeline />
 //           <EditorInChief />
 //           <ArticlesSection />
@@ -71,14 +71,14 @@
 // function App() {
 //   return (
 //     <Router>
-//       <div className="bg-light-gray font-inter min-h-screen flex flex-col">
+//       <div className="flex min-h-screen flex-col bg-light-gray font-inter">
 //         {/* Persistent Layout */}
 //         <Header />
 //         <JournalBanner />
 //         <NavBar />
 
 //         {/* Page Content */}
-//         <main className="w-full mt-8 flex-grow">
+//         <main className="mt-8 w-full flex-grow">
 //           <Routes>
 //             {/* Home Page */}
 //             <Route path="/" element={<HomePage />} />
@@ -115,6 +115,7 @@
 
 // Add My Code
 
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -149,13 +150,20 @@ import SignUp from "./pages/sign_pages/signUp";
 import LogIn from "./pages/sign_pages/logIn";
 import RoleSelection from "./pages/selection/roleSelection";
 import ProtectedRoute from "./components/protectedRoute";
+import AuthorDashboard from "./DashBoards/AuthorDashboard";
+import ReviewerDashboard from "./DashBoards/ReviewerDashboard";
+import EditorDashboard from "./DashBoards/EditorDashboard";
+import AdminDashboard from "./DashBoards/AdminDashboard";
+import SubmitManuscript from "./pages/manuscripts/SubmitManuscript";
+import MyManuscripts from "./pages/manuscripts/MyManuscripts";
+import ViewManuscript from "./pages/manuscripts/ViewManuscripts";
 
 // Home Page as a separate component for cleaner structure
 const HomePage = () => {
   return (
     <>
       {/* AboutJournal and PublishingOptions side-by-side */}
-      <div className="flex flex-col lg:flex-row gap-8 mb-10">
+      <div className="mb-10 flex flex-col gap-8 lg:flex-row">
         <div className="w-full lg:w-3/4">
           <AboutJournal />
         </div>
@@ -164,9 +172,9 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col gap-8 lg:flex-row">
         {/* Main Content */}
-        <div className="w-full lg:w-3/4 flex flex-col gap-10">
+        <div className="flex w-full flex-col gap-10 lg:w-3/4">
           <Timeline />
           <EditorInChief />
           <ArticlesSection />
@@ -189,14 +197,14 @@ const HomePage = () => {
 function App() {
   return (
     <Router>
-      <div className="bg-light-gray font-inter min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col bg-light-gray font-inter">
         {/* Persistent Layout */}
         <Header />
         <JournalBanner />
         <NavBar />
 
         {/* Page Content */}
-        <main className="w-full mt-8 flex-grow">
+        <main className="mt-8 w-full flex-grow">
           <Routes>
             {/* Home Page */}
             <Route path="/" element={<HomePage />} />
@@ -227,10 +235,26 @@ function App() {
             />
 
             {/* Role-specific Dashboard Routes (Add your actual components later) */}
-            <Route path="/author-dashboard" element={<div className="p-8">Author Dashboard - Coming Soon</div>} />
-            <Route path="/reviewer-dashboard" element={<div className="p-8">Reviewer Dashboard - Coming Soon</div>} />
-            <Route path="/editor-dashboard" element={<div className="p-8">Editor Dashboard - Coming Soon</div>} />
+            
+            
+            <Route path="/author-dashboard" element={<ProtectedRoute><AuthorDashboard></AuthorDashboard></ProtectedRoute>} />
+            <Route path="/reviewer-dashboard" element={<ProtectedRoute><ReviewerDashboard></ReviewerDashboard></ProtectedRoute>} />
+            <Route path="/editor-dashboard" element={<ProtectedRoute><EditorDashboard></EditorDashboard></ProtectedRoute>} />
+            <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard></AdminDashboard></ProtectedRoute>}></Route>
+
+
+            <Route path="/submit-manuscript" element={<ProtectedRoute><SubmitManuscript></SubmitManuscript></ProtectedRoute>}></Route>
+            <Route path="/my-manuscripts" element={<ProtectedRoute><MyManuscripts></MyManuscripts></ProtectedRoute>}></Route>
+            <Route path="/manuscript/:id" element={<ProtectedRoute><ViewManuscript></ViewManuscript></ProtectedRoute>}></Route>
+
+
+            
           </Routes>
+
+
+          
+
+
         </main>
 
         {/* Persistent Footer */}
