@@ -23,7 +23,12 @@ import SpecialIssues from "./components/SpecialIssues";
 // Pages
 import AimsAndScope from "./components/AimsAndScope";
 import GuideForAuthors from "./pages/publish/guide_for_authors";
+import AllIssues from "./pages/all_issues/AllIssues";
+import LatestIssue from "./pages/latest_issue/LatestIssue";
 import SubmitArticle from "./pages/submit_article/submit_article"; // 👈 Add this page
+import PoliciesAndGuidelines from "./pages/publish/policies_and_guidelines";
+import CallForAuthorsList, { CallForAuthorsDetail } from "./pages/publish/call_for_authors";
+
 
 // Home Page as a separate component for cleaner structure
 const HomePage = () => {
@@ -71,16 +76,22 @@ function App() {
         <NavBar />
 
         {/* Page Content */}
-        <main className="container mx-auto px-4 mt-8 flex-grow">
+        <main className="w-full mt-8 flex-grow">
           <Routes>
             {/* Home Page */}
             <Route path="/" element={<HomePage />} />
 
             {/* Other Pages */}
             <Route path="/aims-and-scope" element={<AimsAndScope />} />
+            <Route path="/all-issues" element={<AllIssues />} />
+            <Route path="/latest-issue" element={<LatestIssue />} />
             <Route path="/publish/guide-for-authors" element={<GuideForAuthors />} />
             <Route path="/submit-article" element={<SubmitArticle />} />
+            <Route path="/policies-and-guidelines" element={<PoliciesAndGuidelines />} />
             <Route path="/guide_for_authors" element={<GuideForAuthors />} />
+            <Route path="/publish/call-for-authors" element={<CallForAuthorsList />} />
+            <Route path="/publish/call-for-authors/:id" element={<CallForAuthorsDetail />} />
+
           </Routes>
         </main>
 

@@ -46,8 +46,8 @@ const SubmitArticle: React.FC = () => {
       if (file) formData.append("file", file);
 
       // TODO: Replace with your backend endpoint
-      const response = await axios.post("http://localhost:5000/api/articles", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post("http://localhost:4561/api/articles", formData, {
+        headers: { "Content-Type": "application/json" },
       });
 
       setMessage("✅ Article submitted successfully!");
@@ -56,8 +56,12 @@ const SubmitArticle: React.FC = () => {
       setBody("");
       setDescription("");
       setFile(null);
-    } catch (error: any) {
-      console.error(error);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error:", error.response?.data || error.message);
+      } else {
+        console.error("Unexpected error:", error);
+      }
       setMessage("❌ Failed to submit article");
     } finally {
       setLoading(false);

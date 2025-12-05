@@ -12,11 +12,11 @@ const tabs = [
 const NavBar: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  // Dropdown menu options for each tab (text + href)
+
   const dropdownItems: Record<string, { text: string; href: string }[]> = {
     "Articles & Issues": [
       { text: "Latest issue", href: "#latest-issue" },
-      { text: "All issues", href: "#all-issues" },
+      { text: "All issues", href: "/all-issues" },
       { text: "Articles in press", href: "#articles-in-press" },
       { text: "Special issues and article collections", href: "#special-issues" },
       { text: "Linked datasets", href: "#linked-datasets" },
@@ -34,8 +34,8 @@ const NavBar: React.FC = () => {
     "Publish": [
       { text: "Submit your article", href: "submit-article" },
       { text: "Guide for authors", href: "guide_for_authors" },
-      { text: "Call for papers", href: "#call-papers" },
-      { text: "Policies and Guidelines", href: "#policies-guidelines" },
+      { text: "Call for papers", href: "/publish/call-for-authors" },
+      { text: "Policies and Guidelines", href: "policies-and-guidelines" },
       { text: "Open access options", href: "#open-access" },
       { text: "Compare journals", href: "#compare-journals" },
       { text: "Language Editing services", href: "#language-editing" },
@@ -71,9 +71,23 @@ const NavBar: React.FC = () => {
                     <ul className="py-2">
                       {dropdownItems[tab.name].map((item, idx) => (
                         <li key={idx}>
-                          {item.text === 'Aims and scope' ? (
+                          {item.text === 'Aims and scope' || item.text === 'Call for papers' ? (
                             <Link
-                              to="/aims-and-scope"
+                              to={item.text === 'Aims and scope' ? "/aims-and-scope" : "/publish/call-for-authors"}
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : item.text === 'All issues' ? (
+                            <Link
+                              to="/all-issues"
+                              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
+                            >
+                              {item.text}
+                            </Link>
+                          ) : item.text === 'Latest issue' ? (
+                            <Link
+                              to="/latest-issue"
                               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 text-sm"
                             >
                               {item.text}
@@ -101,7 +115,7 @@ const NavBar: React.FC = () => {
                 <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             </div>
             <a href="submit-article" className="text-brand-blue hover:underline">Submit your article</a>
-            <a href="#" className="text-brand-blue hover:underline">Guide for authors</a>
+            <a href="guide_for_authors" className="text-brand-blue hover:underline">Guide for authors</a>
           </div>
         </div>
       </div>
