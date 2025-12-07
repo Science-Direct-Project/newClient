@@ -4,11 +4,11 @@ const AimsAndScope: React.FC = () => {
   return (
     <section className="bg-white w-full min-h-screen flex flex-col md:flex-row">
       {/* Left side: Title */}
-      <div className="md:w-1/2 w-full flex items-center justify-center border-r border-gray-200 p-8">
+      <div className="md:w-[30%] w-full flex items-start justify-center border-r border-gray-200 p-8">
         <h1 className="text-3xl font-bold text-gray-800">Aims and scope</h1>
       </div>
       {/* Right side: Content */}
-      <div className="md:w-1/2 w-full p-8 flex items-center">
+      <div className="md:w-[70%] w-full p-8 flex items-center">
         <div className="w-full text-gray-800">
           <p className="font-semibold mb-4">
             <span className="font-bold">Internet of Things; Engineering Cyber Physical Human Systems</span> is a comprehensive journal encouraging cross collaboration between researchers, engineers and practitioners in the field of IoT & Cyber Physical Human Systems. The journal offers a unique platform to exchange scientific information on the entire breadth of technology, science, and societal applications of the IoT.
