@@ -157,6 +157,7 @@ import AdminDashboard from "./DashBoards/AdminDashboard";
 import SubmitManuscript from "./pages/manuscripts/SubmitManuscript";
 import MyManuscripts from "./pages/manuscripts/MyManuscripts";
 import ViewManuscript from "./pages/manuscripts/ViewManuscripts";
+import JournalOpenAccessPage from "./pages/publish/Open_access";
 
 // Home Page as a separate component for cleaner structure
 const HomePage = () => {
@@ -219,6 +220,7 @@ function App() {
             <Route path="/guide_for_authors" element={<GuideForAuthors />} />
             <Route path="/publish/call-for-authors" element={<CallForAuthorsList />} />
             <Route path="/publish/call-for-authors/:id" element={<CallForAuthorsDetail />} />
+            <Route path="/publish/open-access-options" element ={<JournalOpenAccessPage/>}/>
 
             {/* Auth Pages */}
             <Route path="/signup" element={<SignUp />} />
