@@ -152,11 +152,15 @@ import RoleSelection from "./pages/selection/roleSelection";
 import ProtectedRoute from "./components/protectedRoute";
 import AuthorDashboard from "./DashBoards/AuthorDashboard";
 import ReviewerDashboard from "./DashBoards/ReviewerDashboard";
-import EditorDashboard from "./DashBoards/EditorDashboard";
-import AdminDashboard from "./DashBoards/AdminDashboard";
+// import EditorDashboard from "./DashBoards/EditorDashboard";
+// import AdminDashboard from "./DashBoards/AdminDashboard";
 import SubmitManuscript from "./pages/manuscripts/SubmitManuscript";
 import MyManuscripts from "./pages/manuscripts/MyManuscripts";
 import ViewManuscript from "./pages/manuscripts/ViewManuscripts";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import ReviewDetailsPage from "./pages/reviews/ReviewDetailsPage";
+import SubmitReviewPage from "./pages/reviews/SubmitReviewPage";
+import JournalOpenAccessPage from "./pages/publish/Open_access";
 
 // Home Page as a separate component for cleaner structure
 const HomePage = () => {
@@ -219,6 +223,7 @@ function App() {
             <Route path="/guide_for_authors" element={<GuideForAuthors />} />
             <Route path="/publish/call-for-authors" element={<CallForAuthorsList />} />
             <Route path="/publish/call-for-authors/:id" element={<CallForAuthorsDetail />} />
+            <Route path="/publish/open-access-options" element ={<JournalOpenAccessPage/>}/>
 
             {/* Auth Pages */}
             <Route path="/signup" element={<SignUp />} />
@@ -238,7 +243,7 @@ function App() {
             
             
             <Route path="/author-dashboard" element={<ProtectedRoute><AuthorDashboard></AuthorDashboard></ProtectedRoute>} />
-            <Route path="/reviewer-dashboard" element={<ProtectedRoute><ReviewerDashboard></ReviewerDashboard></ProtectedRoute>} />
+            {/* <Route path="/reviewer-dashboard" element={<ProtectedRoute><ReviewerDashboard></ReviewerDashboard></ProtectedRoute>} />
             <Route path="/editor-dashboard" element={<ProtectedRoute><EditorDashboard></EditorDashboard></ProtectedRoute>} />
             <Route 
               path="/admin-dashboard" 
@@ -253,6 +258,80 @@ function App() {
             <Route path="/submit-manuscript" element={<ProtectedRoute><SubmitManuscript></SubmitManuscript></ProtectedRoute>}></Route>
             <Route path="/my-manuscripts" element={<ProtectedRoute><MyManuscripts></MyManuscripts></ProtectedRoute>}></Route>
             <Route path="/manuscript/:id" element={<ProtectedRoute><ViewManuscript></ViewManuscript></ProtectedRoute>}></Route>
+
+
+
+
+         {/* Reviewer-only routes */}
+{/* <Route element={ */}
+  {/* <ProtectedRoute> */}
+    {/* <RoleProtectedRoute roles={['reviewer']} /> */}
+  {/* </ProtectedRoute> */}
+{/* }> */}
+  {/* <Route path="/reviewer-dashboard" element={<ReviewerDashboard />} /> */}
+  {/* <Route path="/reviews/:manuscriptId/submit" element={<SubmitReviewPage />} /> */}
+  {/* <Route path="/reviews/:reviewId/edit" element={<SubmitReviewPage />} /> */}
+{/* </Route> */}
+
+
+{/* 
+  <Route path="/reviewer-dashboard" element={<ReviewerDashboard/>} />
+  <Route path="/reviews/:manuscriptId/submit" element={<SubmitReviewPage/>} />
+  <Route path="/reviews/:reviewId/edit" element={<SubmitReviewPage />} /> */}
+
+
+
+  
+
+
+
+
+
+
+
+
+{/* Shared reviewer + editor routes
+<Route element={
+  <ProtectedRoute>
+    <RoleProtectedRoute roles={['reviewer','editor','editorInChief','admin']} />
+  </ProtectedRoute>
+}>
+  <Route path="/reviews/:reviewId" element={<ReviewDetailsPage />} /> */}
+  
+
+  {/* REVIEWER ONLY ROUTES */}
+<Route 
+  // element={
+  //   <ProtectedRoute>
+  //     <RoleProtectedRoute roles={['reviewer']} />
+  //   </ProtectedRoute>
+  // }
+>
+  <Route path="/reviewer-dashboard" element={<ProtectedRoute><ReviewerDashboard /></ProtectedRoute>} />
+  <Route path="/reviews/:manuscriptId/submit" element={<ProtectedRoute><SubmitReviewPage /></ProtectedRoute>} />
+  <Route path="/reviews/:reviewId/edit" element={<ProtectedRoute><SubmitReviewPage /></ProtectedRoute>} />
+</Route>
+
+{/* Shared reviewer + editor routes */}
+<Route 
+  // element={
+  //   <ProtectedRoute>
+  //     <RoleProtectedRoute roles={['reviewer','editor','editorInChief','admin']} />
+  //   </ProtectedRoute>
+  // }
+>
+  <Route path="/reviews/:reviewId" element={<ProtectedRoute><ReviewDetailsPage /></ProtectedRoute>} />
+</Route>
+
+
+
+
+
+{/* </Route> */}
+
+
+
+
 
 
             
