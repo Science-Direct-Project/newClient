@@ -10,6 +10,8 @@ const LogIn = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [adminLogin, setAdminLogin] = useState(false);
+  const [adminRole, setAdminRole] = useState<'editorInChief' | 'admin'>('editorInChief');
 
   const handleChange = (e) => {
     setFormData({
@@ -27,10 +29,22 @@ const LogIn = () => {
       const response = await authAPI.login(formData);
       
       if (response.data.success) {
+        const user = response.data.data.user;
         localStorage.setItem('token', response.data.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.data.user));
-        
-        // ✅ FINAL FIX - Page refresh
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // Admin/editor-in-chief fast path
+        if (adminLogin) {
+          const roles = user?.roles || {};
+          const allowed = adminRole === 'editorInChief' ? roles.editorInChief : roles.admin;
+          
+          if (allowed) {
+            localStorage.setItem('currentRole', adminRole);
+            navigate('/admin-dashboard', { replace: true });
+            return;
+          }
+        }
+
         window.location.href = '/role-selection';
       }
     } catch (error) {
@@ -63,6 +77,52 @@ const LogIn = () => {
           )}
 
           <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="flex items-center justify-between rounded-md border border-blue-200 bg-blue-50 px-4 py-3">
+              <div>
+                <p className="font-medium text-blue-900">Admin / Editor-in-Chief?</p>
+                <p className="text-sm text-blue-700">Enable if you want to go straight to the admin dashboard.</p>
+              </div>
+              <label className="inline-flex items-center gap-2 text-sm font-medium text-blue-900">
+                <input
+                  type="checkbox"
+                  checked={adminLogin}
+                  onChange={(e) => setAdminLogin(e.target.checked)}
+                  className="h-4 w-4 rounded border-blue-500 text-blue-600 focus:ring-blue-500"
+                />
+                Use admin login
+              </label>
+            </div>
+
+            {adminLogin && (
+              <div className="rounded-md border border-gray-200 bg-gray-50 p-4">
+                <p className="mb-3 text-sm font-medium text-gray-800">Choose admin role</p>
+                <div className="flex flex-col gap-2">
+                  <label className="flex items-center gap-2 text-sm text-gray-700">
+                    <input
+                      type="radio"
+                      name="adminRole"
+                      value="editorInChief"
+                      checked={adminRole === 'editorInChief'}
+                      onChange={() => setAdminRole('editorInChief')}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                    />
+                    Editor-in-Chief (full administration)
+                  </label>
+                  <label className="flex items-center gap-2 text-sm text-gray-700">
+                    <input
+                      type="radio"
+                      name="adminRole"
+                      value="admin"
+                      checked={adminRole === 'admin'}
+                      onChange={() => setAdminRole('admin')}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                    />
+                    Admin (user management & assignments)
+                  </label>
+                </div>
+              </div>
+            )}
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email Address

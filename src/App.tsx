@@ -240,7 +240,14 @@ function App() {
             <Route path="/author-dashboard" element={<ProtectedRoute><AuthorDashboard></AuthorDashboard></ProtectedRoute>} />
             <Route path="/reviewer-dashboard" element={<ProtectedRoute><ReviewerDashboard></ReviewerDashboard></ProtectedRoute>} />
             <Route path="/editor-dashboard" element={<ProtectedRoute><EditorDashboard></EditorDashboard></ProtectedRoute>} />
-            <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard></AdminDashboard></ProtectedRoute>}></Route>
+            <Route 
+              path="/admin-dashboard" 
+              element={
+                <ProtectedRoute roles={['editorInChief', 'admin']}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
 
 
             <Route path="/submit-manuscript" element={<ProtectedRoute><SubmitManuscript></SubmitManuscript></ProtectedRoute>}></Route>
